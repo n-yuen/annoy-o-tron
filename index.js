@@ -4,7 +4,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 //const ffmpeg = require('ffmpeg');
 
-var vc;
+var vc = undefined;
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     var newUserChannel = newMember.voiceChannel
@@ -22,7 +22,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 });
             }).catch(err => console.log(err));
         }
-    } else if(newUserChannel === undefined){
+    } else if(newUserChannel === undefined && vc !== undefined){
         vc.leave()
     }
 

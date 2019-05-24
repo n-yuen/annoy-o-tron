@@ -25,7 +25,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {   // Play unique mp3 i
     } else if (newUserChannel === undefined && vc !== undefined) {
         vc.leave()
     }
-
 })
 
 client.on('message', (message) => {     // Play mp3 if special message is sent in chat in your voice channel,
@@ -45,7 +44,7 @@ client.on('message', (message) => {     // Play mp3 if special message is sent i
         for ( var i = 0; i < messages.length; i++ ) {
             var m = messages[i]
             if (content.startsWith(m.trigger)){
-                toPlay = m.file
+                toPlay = './audio/' + m.file
                 break
             }
         }

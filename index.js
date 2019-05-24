@@ -12,6 +12,10 @@ function leave() {
 }
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {   // Play unique mp3 if user with role enters the chat
+
+    if (oldMember.user.bot || newMember.user.bot)
+        return
+
     var newUserChannel = newMember.voiceChannel
     var oldUserChannel = oldMember.voiceChannel
 
@@ -49,24 +53,26 @@ client.on('message', (message) => {     /*
             member = mention
         }
 
-        console.log(content.length)
         var parsed_content = content.split(" ")
         if (parsed_content.length > expected_len)
             return
 
         var iter = 0 // number of times to repeat the action
-        if (parsed_content.length > expected_len - 1) { // read number as second word of the message, if applicable, and storre to iter
+        if (parsed_content.length > expected_len - 1) { // read number as second word of the message, if applicable, and store to iter
             var content2 = parsed_content[1]
             if (content2 !== undefined && !isNaN(content2))
                 iter = parseInt(content2, 10)
         }
 
-        iter = Math.max(iter, 20)   // avoid utter cancer
+        iter = Math.min(iter, 20)   // avoid utter cancer
 
         vc = member.voiceChannel
 
         var toPlay = undefined
         if (parsed_content[0] == '!harass') {
+
+            console.log(member.nickname + ': ' + content)
+
             if (iter === 0) iter = 10
 
             function joinLeave(i) {         // join and leave repeatedly
@@ -81,6 +87,7 @@ client.on('message', (message) => {     /*
             }
 
             joinLeave(iter)
+
         } else {
             for (var i = 0; i < messages.sound_triggers.length; i++) {  // look for correct song to play
                 var m = messages.sound_triggers[i]
@@ -92,6 +99,8 @@ client.on('message', (message) => {     /*
             if (toPlay === undefined || vc === undefined) {
                 return
             }
+
+            console.log(member.nickname + ': ' + content)
 
             if (!iter) iter++
 

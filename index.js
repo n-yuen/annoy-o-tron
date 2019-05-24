@@ -53,6 +53,10 @@ client.on('message', (message) => {     /*
             member = mention
         }
 
+        vc = member.voiceChannel
+        if (vc === undefined)
+            return
+
         var parsed_content = content.split(" ")
         if (parsed_content.length > expected_len)
             return
@@ -65,8 +69,6 @@ client.on('message', (message) => {     /*
         }
 
         iter = Math.min(iter, 20)   // avoid utter cancer
-
-        vc = member.voiceChannel
 
         var toPlay = undefined
         if (parsed_content[0] == '!harass') {

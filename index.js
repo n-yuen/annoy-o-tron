@@ -2,10 +2,11 @@ require('dotenv').config()
 
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const messages = require('./messages.json')
 
 var vc = undefined;
 
-client.on('voiceStateUpdate', (oldMember, newMember) => {
+client.on('voiceStateUpdate', (oldMember, newMember) => {   // Play unique mp3 if user with role enters the chat
     var newUserChannel = newMember.voiceChannel
     var oldUserChannel = oldMember.voiceChannel
 
@@ -27,26 +28,41 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 })
 
-client.on('message', (message) => {
-    vc = message.member.voiceChannel
-    if (message.content.startsWith('!') && vc !== undefined) {
-        switch(message.content){
-            case '!keem':
-                var toPlay = './shout.mp3'
-            case '!bruh':
-                var toPlay = './bruh.mp3'
-            default:
-                var toPlay = undefined
+client.on('message', (message) => {     // Play mp3 if special message is sent in chat in your voice channel,
+                                        // or in the voice channel of someone you pinged
+    var member = message.member
+    var content = message.content
+
+    if (content.startsWith('!')) {
+
+        var mention = message.mentions.members.first()
+        if (mention !== undefined){
+            member = mention
         }
-        if (toPlay !== undefined){
+        vc = member.voiceChannel
+
+        var toPlay = undefined
+        for ( var i = 0; i < messages.length; i++ ) {
+            var m = messages[i]
+            if (content.startsWith(m.trigger)){
+                toPlay = m.file
+                break
+            }
+        }
+        if (toPlay === undefined){
+            return
+        }
+
+        if (vc !== undefined){
             vc.join().then(connection => {
                 var dispatcher = connection.playFile(toPlay)
                 dispatcher.on("end", end => { 
                     vc.leave()
                 })
             }).catch(err => console.log(err))
+            message.delete()
         }
     }
-  });
+  })
 
 client.login(process.env.BOT_TOKEN)

@@ -6,6 +6,11 @@ const messages = require('./messages.json')
 
 var vc = undefined;
 
+function leave() {
+    vc.leave()
+    vc = undefined;
+}
+
 client.on('voiceStateUpdate', (oldMember, newMember) => {   // Play unique mp3 if user with role enters the chat
     var newUserChannel = newMember.voiceChannel
     var oldUserChannel = oldMember.voiceChannel
@@ -18,17 +23,19 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {   // Play unique mp3 i
             vc.join().then(connection => {
                 var dispatcher = connection.playFile('./audio/bassboosted.mp3')
                 dispatcher.on("end", end => {
-                    vc.leave()
+                    leave()
                 })
             }).catch(err => console.log(err))
         }
     } else if (newUserChannel === undefined && vc !== undefined) {  // user left channel
-        vc.leave()
+        leave()
     }
 })
 
-client.on('message', (message) => {     // Play mp3 if special message is sent in chat in your voice channel,
-    // or in the voice channel of someone you pinged
+client.on('message', (message) => {     /* 
+                                        * Play mp3 if special message is sent in chat in your voice channel,
+                                        * or in the voice channel of someone you pinged
+                                        */
     var member = message.member
     var content = message.content
 
@@ -60,7 +67,7 @@ client.on('message', (message) => {     // Play mp3 if special message is sent i
 
         var toPlay = undefined
         if (parsed_content[0] == '!harass') {
-            if (iter === 0)     iter = 10
+            if (iter === 0) iter = 10
 
             function joinLeave(i) {         // join and leave repeatedly
                 setTimeout(() => {
@@ -93,7 +100,7 @@ client.on('message', (message) => {     // Play mp3 if special message is sent i
                     var dispatcher = connection.playFile(toPlay)
                     dispatcher.on("end", end => {
                         if (--iter) (playAudio(i))
-                        else        vc.leave()
+                        else if (vc !== undefined) leave()
                     })
                 }
                 playAudio(iter)

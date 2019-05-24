@@ -1,0 +1,30 @@
+This bot will play song.mp3 whenever a user with a specified role joins a voice channel.
+
+In addition, the bot will play various .mp3 files in the voice channel of the message sender, or, if the bot is pinged instead, it will play them in the voice channel of another user.
+
+# Setup
+
+Create a .env file containing a discord key.
+
+Then, create a messages.json file containing two properties:
+
+sound_triggers, an array of elements formatted as follows:
+
+{
+    "trigger": ...
+    "file": ...
+}
+
+where file is an mp3 file located in the ./audio folder, and trigge is what is typed in chat for the bot to play the audio.
+
+role_trigger, the exact name of the role that the bot will recognize to play audio when that user joins a channel.
+
+# Usage
+
+Message !null for the bot to join and leave repeatedly.
+
+Whenever a user with role_trigger joins a voice channel, the bot will play song.mp3.
+
+Message !(trigger) [@user] for the bot to play a specified mp3 in the channel that @user is in, or, if no user is specified, for the bot to play the specified mp3 in the channel that you are in.
+
+

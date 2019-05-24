@@ -1,0 +1,14 @@
+{
+    "sound_triggers": [
+        {
+            "trigger": "!bruh",
+            "file": "bruh.mp3"
+        },
+        {
+            "trigger": "!nani",
+            "file": "nani.mp3"
+        }
+
+    ],
+    "role_trigger": "jet plane"
+}

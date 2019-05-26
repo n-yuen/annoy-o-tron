@@ -88,7 +88,7 @@ client.on('message', (message) => {     /*
 
         if (isSpam) {       // Text spam
 
-            console.log(member.user.tag + ': ' + content)
+            console.log(message.member.user.tag + ': ' + content)
 
             iter = Math.min(iter, 50) // prevent cancer
 

@@ -122,9 +122,6 @@ client.on('message', (message) => {     /*
 
         iter = Math.min(iter, 20)   // avoid utter cancer
 
-        console.log('we are here')
-        console.log(fWData)
-
         if (fWData == '!harass') {
 
             console.log(member.user.tag + ': ' + content)

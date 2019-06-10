@@ -12,9 +12,9 @@ And just when your friends think they can get you by muting the bot, have the bo
 
 Create a .env file containing Discord setup information; it should have the properties:
 
-`BOT_TOKEN=....
+`BOT_TOKEN=....`
 
-CLIENT_ID=....`
+`CLIENT_ID=....`
 
 Then, create a messages.json file containing the following properties:
 

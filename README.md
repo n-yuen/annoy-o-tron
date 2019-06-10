@@ -13,6 +13,7 @@ And just when your friends think they can get you by muting the bot, have the bo
 Create a .env file containing Discord setup information; it should have the properties:
 
 `BOT_TOKEN=....
+
 CLIENT_ID=....`
 
 Then, create a messages.json file containing the following properties:
@@ -34,14 +35,12 @@ View messages_example.json for an example.
 
 # Syntax
 
-The bot will read commands from Discord chat. For all commands, syntax is ![command name]=[command number]. To play mp3 files, the bot will default to the voice channel that you're in. Otherwise, you will need to specify the channel to join by adding [@user_to_annoy] at the end of the command.
+The bot will read commands from Discord chat. For all commands, syntax is `![command name]=[command number]`. To play mp3 files, the bot will default to the voice channel that you're in. Otherwise, you will need to specify the channel to join by adding [@user_to_annoy] at the end of the command.
 
 Ex: `!bruh=20 @XDDDDDDD#6969` will play the mp3 corresponding to "bruh" in XDDDDDDD's channel 20 times in a row.
 
 Alternatively, the `!harass` command will tell the bot to leave and join a user's channel, following the same syntax as above.
 
-For text spam, it's roughly the same:
-
-`!spam=[num] [message]`
+For text spam, it's roughly the same: `!spam=[num] [message]`
 
 Ex: `!spam=50 @everyone HAVE A NICE DAY` will cause the bot to output `@everyone HAVE A NICE DAY` fifty times.

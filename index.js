@@ -50,7 +50,7 @@ client.on('message', (message) => {     /*
 
     if (content.startsWith('!')) {
 
-        var iter        // Number of times the command is to be executed, in a row
+      
 
         var isSpam = content.startsWith('!spam')
         var splitIndex = content.indexOf(' ')
@@ -75,9 +75,9 @@ client.on('message', (message) => {     /*
         var fWLen = fWArr.length
         if (fWLen > 2)
             return
-        var fWData = fWArr[0]       // Before equals sign
         var fWNum = fWArr[1]        // After equals sign
 
+        var iter    // Number of times the command is to be executed, in a row
         if (fWLen === 1) {
             iter = iter_default
         } else if (!isNaN(fWNum)) {
@@ -107,8 +107,9 @@ client.on('message', (message) => {     /*
 
         var expected_len = 0
         var numWords = 0    // used to check correct syntax
-        if (remainder !== undefined)
+        if (remainder !== undefined){
             numWords = remainder.split(" ").length
+        }
 
         var mention = message.mentions.members.first()  // check for pinged member
         if (mention !== undefined) {
@@ -122,7 +123,7 @@ client.on('message', (message) => {     /*
 
         iter = Math.min(iter, 20)   // avoid utter cancer
 
-        if (fWData == '!harass') {
+        if (fWArr[0] == '!harass') {
 
             console.log(member.user.tag + ': ' + content)
 
@@ -146,7 +147,7 @@ client.on('message', (message) => {     /*
             for (var i = 0; i < messages.sound_triggers.length; i++) {  // look for correct song to play
                 var m = messages.sound_triggers[i]
                 
-                if (fWData == m.trigger) {
+                if (fWArr[0] == m.trigger) {
                     toPlay = './audio/' + m.file
                     break
                 }

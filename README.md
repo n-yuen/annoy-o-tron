@@ -1,4 +1,4 @@
-#Annoy-o-tron
+# xAnnoy-o-tron
 
 Want to pester your friends? Do people not hate you enough? Do you not hate yourself enough? This is the bot for you.
 
@@ -36,9 +36,7 @@ View messages_example.json for an example.
 
 The bot will read commands from Discord chat. For all commands, syntax is ![command name]=[command number]. To play mp3 files, the bot will default to the voice channel that you're in. Otherwise, you will need to specify the channel to join by adding [@user_to_annoy] at the end of the command.
 
-Example:
-
-`!bruh=20 @XDDDDDDD#6969` will play the mp3 corresponding to "bruh" in XDDDDDDD's channel 20 times in a row.
+Ex: `!bruh=20 @XDDDDDDD#6969` will play the mp3 corresponding to "bruh" in XDDDDDDD's channel 20 times in a row.
 
 Alternatively, the `!harass` command will tell the bot to leave and join a user's channel, following the same syntax as above.
 
@@ -46,6 +44,4 @@ For text spam, it's roughly the same:
 
 `!spam=[num] [message]`
 
-Ex:
-
-`!spam=50 @everyone HAVE A NICE DAY` will cause the bot to output `@everyone HAVE A NICE DAY` fifty times.
+Ex: `!spam=50 @everyone HAVE A NICE DAY` will cause the bot to output `@everyone HAVE A NICE DAY` fifty times.

@@ -1,4 +1,4 @@
-# xAnnoy-o-tron
+# Annoy-o-tron
 
 Want to pester your friends? Do people not hate you enough? Do you not hate yourself enough? This is the bot for you.
 

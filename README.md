@@ -1,3 +1,5 @@
+#Annoy-o-tron
+
 Want to pester your friends? Do people not hate you enough? Do you not hate yourself enough? This is the bot for you.
 
 Annoy-o-tron can, on request, play mp3s on repeat any number of times! Alternatively, it can spam chat with a specified message over and over again.
@@ -38,11 +40,11 @@ Example:
 
 `!bruh=20 @XDDDDDDD#6969` will play the mp3 corresponding to "bruh" in XDDDDDDD's channel 20 times in a row.
 
-Alternatively, the !harass command will tell the bot to leave and join a user's channel, following the same syntax as above.
+Alternatively, the `!harass` command will tell the bot to leave and join a user's channel, following the same syntax as above.
 
 For text spam, it's roughly the same:
 
-!spam=[num] [message]
+`!spam=[num] [message]`
 
 Ex:
 
